@@ -1,5 +1,6 @@
-🚴‍♂️🍕 Simple delivery task agent
-A* pathfinding + fully in-built animated visualization (no external images)
+# 🚴‍♂️🍕 Simple delivery task agent
+# ------------------------------------------------------------------
+# A* pathfinding + fully in-built animated visualization (no external images)
 
 import heapq
 import matplotlib.pyplot as plt
@@ -7,7 +8,9 @@ import numpy as np
 import time
 from IPython.display import clear_output, display
 
-1. A* Pathfinding Algorithm
+# ----------------------------
+# 1. A* Pathfinding Algorithm
+# ----------------------------
 def astar(grid, start, goal):
     rows, cols = grid.shape
     open_set = [(0 + abs(goal[0]-start[0]) + abs(goal[1]-start[1]), 0, start, [])]
@@ -27,21 +30,25 @@ def astar(grid, start, goal):
                 heapq.heappush(open_set, (new_g + h, new_g, (nx,ny), path + [node]))
     return []
 
-2. Environment Setup
+# ----------------------------
+# 2. Environment Setup
+# ----------------------------
 size = 12
 grid = np.zeros((size, size), dtype=int)
 
-Add obstacles (like buildings/roads)
+# Add obstacles (like buildings/roads)
 grid[3, 2:10] = 1
 grid[6, 1:8] = 1
 grid[9, 4:11] = 1
 
-Define key locations
+# Define key locations
 start = (0, 0)        # delivery agent start
 pickup = (2, 10)      # restaurant 🍕
 dropoff = (11, 5)     # customer 🏠
 
-3. Visualization Function
+# ----------------------------
+# 3. Visualization Function
+# ----------------------------
 def show_grid(grid, agent, pickup, dropoff, path=None, carrying=False):
     clear_output(wait=True)
     plt.figure(figsize=(7,7))
